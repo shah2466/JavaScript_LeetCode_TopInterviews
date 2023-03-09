@@ -4,36 +4,27 @@
  */
 
 var lengthOfLongestSubstring = function (s) {
-  let initialSubstring = "";
-  let finalSubstring = "";
-
-  //character next to each other, no duplicate. Anytime u find a repeating character, reset and note down the length till then. start over until you reach the end of the string.
-  //add i nd i+1, if duplicate, take the length, reset the string and continue.
-  //next time you reset, compare the length with the previous substring. Update the prev length
+  let longestSubstringLength = 0;
+  let currentSubstring = "";
   for (let i = 0; i < s.length; i++) {
-    let a = s[i];
-    if (i < s.length - 1) {
-      if (initialSubstring.includes(s[i]) == false) {
-        initialSubstring = initialSubstring.concat(s[i]);
-        continue;
-      } else if (initialSubstring.includes(s[i])) {
-        if (initialSubstring.length > finalSubstring.length) {
-          finalSubstring = initialSubstring;
-          initialSubstring = "";
-          initialSubstring = initialSubstring.concat(s[i]);
-          continue;
-        }
-      }
-    } else if ((i = s.length - 1)) {
-      if (initialSubstring.length > finalSubstring.length) {
-        finalSubstring = initialSubstring;
-      }
+    let char = s.charAt(i); //char at current index
+    index = currentSubstring.indexOf(char); //index of the char at currentSubstring when the repitition is found.
+
+    if (currentSubstring.includes(char)) {
+      currentSubstring = currentSubstring.substring(index + 1) + char; //(index +1) starts the currentString from the character next to the char till the end of the currentString
+    } else {
+      currentSubstring += char;
+      longestSubstringLength = Math.max(
+        longestSubstringLength,
+        currentSubstring.length
+      );
     }
   }
-  return finalSubstring.length;
+
+  return longestSubstringLength;
 };
 
-console.log(lengthOfLongestSubstring("pwwkew"));
+//console.log(lengthOfLongestSubstring("  "));
 
 /*
 Given a string s, find the length of the longest 
