@@ -6,6 +6,7 @@
 var lengthOfLongestSubstring = function (s) {
   let longestSubstringLength = 0;
   let currentSubstring = "";
+
   for (let i = 0; i < s.length; i++) {
     let char = s.charAt(i); //char at current index
     index = currentSubstring.indexOf(char); //index of the char at currentSubstring when the repitition is found.
@@ -24,7 +25,7 @@ var lengthOfLongestSubstring = function (s) {
   return longestSubstringLength;
 };
 
-//console.log(lengthOfLongestSubstring("  "));
+console.log(lengthOfLongestSubstring("  "));
 
 /*
 Given a string s, find the length of the longest 
