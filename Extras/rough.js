@@ -1,9 +1,3 @@
-function isPalindrome(str) {
-  for (i = 0; i < str.length; i++) {
-    if (str.charAt(i) == str.charAt(str.length - i - 1)) {
-      return true;
-    } else return false;
-  }
+if (-2 < -123) {
+  console.log("true");
 }
-
-console.log(isPalindrome("abda")); //
