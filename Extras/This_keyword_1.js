@@ -8,6 +8,7 @@ const video = {
   },
   stop1() {
     console.log(video.title);
+    console.log(title); //error because the title is not passed by the stop1 function.
   },
 };
 video.stop2 = function (title) {
