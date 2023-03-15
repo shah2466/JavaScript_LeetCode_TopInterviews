@@ -4,18 +4,19 @@
 const video = {
   title: "a",
   play() {
-    console.log(this.title);
+    console.log("The title**is: " + this.title);
   },
   stop1() {
-    console.log(video.title);
-    console.log(title); //error because the title is not passed by the stop1 function.
+    console.log("The titleis: " + video.title);
+    console.log("The title is: " + title); //error because the title is not passed by the stop1 function. We can pass it from the function definition as a parameter
+    //or use 'this/title' to use the video object's title.
   },
 };
 video.stop2 = function (title) {
-  console.log(title);
+  console.log("The titleis: ++++" + title);
 };
 
-video.stop1("b");
+video.stop1();
 video.stop2("c");
 video.play();
 console.log(video);

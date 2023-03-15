@@ -1,4 +1,4 @@
-// If a function is part of an object (i.e. method) -> 'this' refers th the object itself
+// If a function is part of an object (i.e. a method) -> 'this' refers th the object itself
 //If it is a normal function, then 'this' refers to global object (window in case of browser)
 //ARROW function do not have their own 'this' binding. They use the 'this' binding of the enclosing function/method.
 
@@ -18,7 +18,7 @@ const video = {
 
 video.showTags();
 
-//In below code, same can be acheived using the ARROW function. Because the ARROW function does not have its own 'this' binding, it will use the 'this' binding of 'showTags()' function.
+//In below code, above result can be acheived using the ARROW function. Because the ARROW function does not have its own 'this' binding, it will use the 'this' binding of 'showTags()' function.
 
 // const video = {
 //   title: "a",
