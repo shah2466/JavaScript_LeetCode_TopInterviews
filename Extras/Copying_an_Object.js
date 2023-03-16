@@ -4,7 +4,7 @@
 // When we perform actions with the object, e.g. take a property user.name, the JavaScript engine looks at what’s at that address and performs
 // the operation on the actual object.
 // Now here’s why it’s important.
-// When an object variable is copied, the reference is copied, but the object itself is not duplicated.
+// When an object variable is copied, the reference is copied (i.e the address of the object is copied), but the object itself is not duplicated.
 // For instance:
 
 let user = { name: "John" };
