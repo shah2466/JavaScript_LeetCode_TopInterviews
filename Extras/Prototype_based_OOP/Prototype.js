@@ -12,24 +12,24 @@ If the property still can't be found, then the prototype's prototype is searched
 in which case 'undefined' is returned.
  */
 
-// const myObject = {
-//   city: "Madrid",
-//   greet() {
-//     console.log(`Greetings from ${this.city}`);
-//   },
-// };
+const myObject = {
+  city: "Madrid",
+  greet() {
+    console.log(`Greetings from ${this.city}`);
+  },
+};
 
-// myObject.greet(); // Greetings from Madrid
-// console.log(Object.getPrototypeOf(myObject)); //[Object: null prototype] {}
+myObject.greet(); // Greetings from Madrid
+console.log(Object.getPrototypeOf(myObject)); //[Object: null prototype] {}
 
 //The prototype of an object is not always Object.prototype
-const myDate = new Date();
-let object = myDate;
+// const myDate = new Date();
+// let object = myDate;
 
-do {
-  object = Object.getPrototypeOf(object);
-  console.log(object);
-} while (object);
+// do {
+//   object = Object.getPrototypeOf(object);
+//   console.log(object);
+// } while (object);
 // iteration 1: Date.prototype
 // iteration 2: Object { }
 // iteration 3: null
