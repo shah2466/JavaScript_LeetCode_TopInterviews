@@ -8,6 +8,7 @@ class Rectangle {
   sayName() {
     console.log(`Hi, I am a ${this.name}.`);
   }
+  //Accessor fields
   get area() {
     return this.height * this.width;
   }

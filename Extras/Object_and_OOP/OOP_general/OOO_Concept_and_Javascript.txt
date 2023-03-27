@@ -1,0 +1,38 @@
+We'll describe these concepts without reference to JavaScript in particular, so all the examples are given in pseudocode. To be precise, the features described here are of a particular style of OOP called class-based or "classical" OOP. JavaScript is a prototype-based language, which means that objects inherit properties and methods from their prototype objects.
+Object-oriented programming is about modeling a system as a collection of objects, where each object represents some particular aspect of the system. Objects contain both functions (and methods) and data. An object provides a public interface to other code that wants to use it but maintains its own private, internal state; other parts of the system don't have to care about what is going on inside the object.
+
+
+Classes and instances
+The definition of the class lists the data and methods. The process of creating an instance is performed by a special function called a constructor. We pass values to the constructor for any internal state that we want to initialize in the new instance.
+Generally, the constructor is written out as part of the class definition, and it usually has the same name as the class itself:
+Inheritance
+When a method has the same name but a different implementation in different classes - is called polymorphism. When a method in a subclass replaces the superclass's implementation, we say that the subclass overrides the version in the superclass.
+Encapsulation
+Objects provide an interface to other code that wants to use them but maintain their own internal state. The object's internal state is kept private, meaning that it can only be accessed by the object's own methods, not from other objects. 
+Keeping an object's internal state private, and generally making a clear division between its public interface and its private internal state, is called encapsulation. Encapsulation is achieved by putting data and methods inside a class.
+It enables the programmer to change the internal implementation of an object without having to find and update all the code that uses it: it creates a kind of firewall between this object and the rest of the system. The internal implementation of an object is kept private from rest of the system/other objects. So, they have/had no access to the internal implementation. So, any changes made to the internal implementation will have no impact to rest of the system.
+In many OOP languages, we can prevent other code from accessing an object's internal state by marking some properties as private. This will generate an error if code outside the object tries to access them.  
+class Student : extends Person
+    properties
+       private year
+    constructor
+        Student(name, year)
+    methods
+       introduceSelf()
+       canStudyArchery() { return this.year > 1 }
+
+student = new Student('Weber', 1)
+student.year // error: 'year' is a private property of Student
+
+In languages that don't enforce access like this, programmers use naming conventions, such as starting the name with an underscore, to indicate that the property should be considered private.
+OOP and JavaScript
+JavaScript features: constructors and prototypes have some relation to some of the OOP concepts described above.
+•	constructors in JavaScript provide us with something like a class definition, enabling us to define the "shape" of an object, including any methods it contains, in a single place. But prototypes can be used here, too. For example, if a method is defined on a constructor's prototype property, then all objects created using that constructor get that method via their prototype, and we don't need to define it in the constructor.
+•	the prototype chain seems like a natural way to implement inheritance. For example, if we can have a Student object whose prototype is Person, then it can inherit name and override introduceSelf().
+But it's worth understanding the differences between these features and the "classical" OOP concepts described above. We'll highlight a couple of them here.
+1)	First, in class-based OOP, classes and objects are two separate constructs, and objects are always created as instances of classes. Also, there is a distinction between the feature used to define a class (the class syntax itself) and the feature used to instantiate an object (a constructor).
+JavaScript, we can and often do create objects without any separate class definition, either using a function or an object literal. This can make working with objects much more lightweight than it is in classical OOP.
+2)	Second, although a prototype chain looks like an inheritance hierarchy and behaves like it in some ways, it's different in others. 
+When a subclass is instantiated, a single object is created which combines properties defined in the subclass with properties defined further up the hierarchy. 
+With prototyping, each level of the hierarchy is represented by a separate object, and they are linked together via the __proto__ property. The prototype chain's behavior is less like inheritance and more like delegation. Delegation is a programming pattern where an object, when asked to perform a task, can perform the task itself or ask another object (its delegate) to perform the task on its behalf. In many ways, delegation is a more flexible way of combining objects than inheritance (for one thing, it's possible to change or completely replace the delegate at run time).
+That said, constructors and prototypes can be used to implement class-based OOP patterns in JavaScript. But using them directly to implement features like inheritance is tricky, so JavaScript provides extra features, layered on top of the prototype model, that map more directly to the concepts of class-based OOP. See below.

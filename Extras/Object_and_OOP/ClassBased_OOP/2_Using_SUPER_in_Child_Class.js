@@ -34,7 +34,7 @@ Here is an updated version of the code that uses this.baseField:
 To access baseField from the Base class in the Extended class, you need to first create an instance of the Base class and then access its baseField property. 
 For example:
 In this modified code, the Extended class constructor calls the super() constructor to initialize the Base class and then initializes the extendedField property 
-with the baseField property of the Base class through the super keyword.
+with the baseField property of the Base class through the 'super' keyword.
 ** */
 
 class Base {

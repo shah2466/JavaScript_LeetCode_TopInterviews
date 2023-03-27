@@ -11,25 +11,25 @@
 //This means that the this value inside an arrow function is the same as the this value outside the function
 //ARROW function do not have their own 'this' binding. They use the 'this' binding of the enclosing function/method.
 
-const video = {
-  title: "a",
-  play() {
-    console.log(this); //here 'this' refers to the object video because play() is a method of the object.
-  },
-  stop1() {
-    console.log("The titleis: " + video.title);
-    console.log("The title is: " + title); //error because the title is not passed by the stop1 function. We can pass it from the function definition as a parameter
-    //or use 'this.title' to use the video object's title.
-  },
-};
-video.stop2 = function (title) {
-  console.log("The titleis: ++++" + title);
-};
+// const video = {
+//   title: "a",
+//   play() {
+//     console.log(this); //here 'this' refers to the object video because play() is a method of the object.
+//   },
+//   stop1() {
+//     console.log("The titleis: " + video.title);
+//     console.log("The title is: " + title); //error because the title is not passed by the stop1 function. We can pass it from the function definition as a parameter
+//     //or use 'this.title' to use the video object's title.
+//   },
+// };
+// video.stop2 = function (title) {
+//   console.log("The titleis: ++++" + title);
+// };
 
-//video.stop1();
-// video.stop2("c");
-video.play();
-// console.log(video);
+// //video.stop1();
+// // video.stop2("c");
+// video.play();
+// // console.log(video);
 
 /*** another example - using Anynomous function */
 const video = {
@@ -45,9 +45,9 @@ const video = {
   },
 };
 
-console.log(video.func1()); //{ title: 'a', func1: [Function: show1], func2: [Function: show2] }. As expected, 'this' is bound to the video object.
-let abc = video.func2();
-console.log(abc()); //global
+console.log(video.func1()); //returns video object.
+let abc = video.func2(); //returns [Function: show_2_inside]
+console.log(abc()); //calling the function 'show_2_inside' = 'global object'
 
 // function showVideo() {
 //   function show1() {
