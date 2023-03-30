@@ -1,4 +1,12 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super#using_super_in_classes
+
+/**
+ * accessing instance variables using 'super' keyword is not valid in JavaScript, because the 'super' keyword is used to access properties and methods of
+ * the parent class, which are attached to the 'prototype of the class'.
+ * ALl types of methods (instance or non-instance) are defined on constructor's prototype.
+ * Instance variables, on the other hand, are attached to the instance itself, and can be accessed using the ONLY 'this' keyword.
+ */
+
 class Rectangle {
   constructor(height, width) {
     this.name = "Rectangle";
@@ -13,7 +21,7 @@ class Rectangle {
     return this.height * this.width;
   }
   set area(value) {
-    this._area = value;
+    this._area = value; //(this._area) is a convention used to indicate that the _area property should be considered "private".
   }
 }
 
@@ -32,7 +40,7 @@ class Square extends Rectangle {
   }
 
   calcArea() {
-    console.log(`area of ${this.name} is: ${this.area}`);
+    console.log(`area of ${this.name} is: ${this.area}`); //this.area comes from the parent class
   }
 }
 

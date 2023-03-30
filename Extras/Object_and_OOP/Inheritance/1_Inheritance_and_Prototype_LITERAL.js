@@ -12,7 +12,7 @@ const b = ["yo", "whadup", "?"];
 function f() {
   return 2;
 }
-// Functions inherit from Function.prototype
+// Functions inherit from 'Function.prototype'
 // (which has methods call, bind, etc.)
 // f ---> Function.prototype ---> Object.prototype ---> null
 
