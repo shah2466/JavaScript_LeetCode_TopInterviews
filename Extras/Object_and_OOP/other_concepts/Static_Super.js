@@ -1,10 +1,7 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super#using_super_in_classes
 
 /**
- * You are also able to call 'super' on static methods.
- * 
- * Accessing 'super' in class field declaration:
-'super' can also be accessed during class field initialization. The reference of 'super' depends on whether the current field is an instance field or a static field.
+ * 'static' field of the parent class can be accessed by the 'static field of the child class.
  */
 
 class Base {
@@ -16,7 +13,7 @@ class Base {
 
 class Extended extends Base {
   extendedField = super.baseMethod(); // 10 => this is an instance field
-  static extendedStaticField = super.baseStaticField; // 90 --static field can call static field from the super using the 'super'
+  static extendedStaticField = super.baseStaticField; // 90 --'static field' can call 'static field' from the parent class using the 'super'
 }
 
 const obj1 = new Extended();

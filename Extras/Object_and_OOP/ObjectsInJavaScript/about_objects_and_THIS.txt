@@ -1,0 +1,38 @@
+n JavaScript, functions are first-class objects, which means that they can be treated as any other value or object, 
+such as strings, numbers, or arrays. This allows you to assign a function to a variable just like any other value, and 
+then use that variable to call the function.
+
+/**THree ways to create object
+ * 1) Object Literal
+ * 2) Create a function: create an empty object, initialize it, and return it.
+ * 3) Constructor: constuctor outside a class: A better way is to use a constructor. A constructor is just a function called using the new keyword.
+ * When you call a constructor, it will:
+create a new object
+bind this to the new object, so you can refer to this in your constructor code
+run the code in the constructor
+return the new object.
+Constructors, by convention, start with a capital letter and are named for the type of object they create.
+*4) Constructor: constuctor inside a class - OOP
+*/
+
+
+/**
+ * When a static or instance method is called without a value for 'this', such as by assigning the method to a variable and
+ * then calling it, the 'this' value will be 'undefined' inside the method.
+ * In JavaScript, the value of 'this' is determined at RUNTIME, based on the way the function is invoked.
+ * If a function is called as a STANDALONE function like functionName(), without a context to an object, like obj.functionName(), then the context of 'this' is lost.
+ */
+ 
+/**
+When a method is called using a variable reference, such as speakFunction() or eatFunction(), the context of the method is lost because the 
+value of 'this' inside a function depends on how the function is called. In JavaScript, the value of this is determined at RUNTIME, based on the way 
+the function is invoked. Here, speakFunction() or eatFunction() function is NOT called as a method of an object, but as a STANDALONE function.
+To avoid losing the context of the method, you can use the bind() method to explicitly bind the this value of the method to a specific object.
+For example, 
+const eatFunction = Animal.eat.bind(Animal);
+In this code, we use the bind() method to create a new function that is bound to the Animal object. 
+The bind() method returns a new function with the 'this' value set to the object passed as an argument. 
+When we call eatFunction() now, it logs the correct value of this.
+ */
+
+//Use 'bind()' to not lose context of 'this'. bind() method creates a new function that is bound to the specified class/object (passed in the argument)
