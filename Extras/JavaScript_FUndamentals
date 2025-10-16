@@ -1,0 +1,173 @@
+1. for (every prop in objects) { // do this }      *objects - enumerable*
+2. for (every item of array) { // do this }          *arrays - iterable**
+
+Javascript == vs ===:
+== (loose equality) compares values after type coercion, while === (strict equality) compares values without type coercion.
+
+'this' Binding: In strict mode, the this value inside a function that is not a method of an object (e.g., a standalone function) is undefined, whereas in non-strict mode, it refers to the global object.
+
+CLosure function: Ability to inner function to retain access to varible of outer function even after 
+the execution of outer function is called closure function. Inner function is called closure function.
+Closures are frequently used in asynchronous operations, such as event handling and callbacks, "to preserve the 'context' in which a function was created". 
+
+Synchronous Code Execution:
+In synchronous code execution, tasks are performed one after the other, in a sequential and BLOCKING manner.
+When a function is called in synchronous code, it will typically block the execution of the rest of the code until it completes its task.
+Synchronous code can make your program seem unresponsive if it has long-running operations because it halts the entire execution until the operation finishes.
+
+Asynchronous Code Execution:
+In asynchronous code execution, tasks are initiated and continue to execute in the background while the program can proceed with other tasks.
+Asynchronous code is non-blocking, meaning it allows your program to remain responsive even when waiting for time-consuming tasks to complete.
+
+*****"Asynchronous operations are typically managed using callbacks, promises, or async/await syntax."
+
+VVI: Asynchronous code is essential for handling tasks like network requests, reading files, and performing operations that could potentially block the main thread, 
+ensuring that your JavaScript applications remain responsive and efficient.
+
+--In automation playwright, we want the code to be synchronous, so we use async/await. 
+In Playwright, as in many modern JavaScript applications, asynchronous operations are common, especially when dealing with tasks such as network requests 
+and interactions with the browser. As a result, the use of async/await is necessary to handle asynchronous code effectively.
+
+*****A Promise is an 'object' that represents a future value or error, allowing you to attach callbacks (function) to it to be executed when the operation completes (either successfully with a value or with an error).
+Promises help in avoiding callback hell (a situation where you have nested callbacks within callbacks) and make asynchronous code more readable and maintainable.
+
+When to use async and await:
+Use async when you want to DECLARE a function that performs asynchronous operations. This helps indicate that the function may not complete immediately and returns a Promise.
+Use "await" inside an async function when you need to "wait for a PROMISE TO RESOLVE before continuing with the execution of your code."
+
+In this example, async and await are used to make an asynchronous HTTP request and handle both successful and error responses in a structured and readable manner.
+**In automation, having 'await' when first opening the application (https request) makes sure the app opens before the next line of code 
+is executed. This make the execution synchronous.
+
+Event Loop Execution:
+
+The event loop continuously checks for completed asynchronous operations and their associated Promise handlers.
+When an asynchronous operation finishes, its callback is placed in the event queue.
+The event loop picks up these callbacks from the queue and executes them in the order they were added, allowing you to respond to the results of the asynchronous operations.
+In summary, the event loop and promises work together to enable asynchronous programming in JavaScript. Promises provide a structured way to manage and handle asynchronous tasks, and the event loop ensures that the code attached to these promises is executed at the appropriate time when the asynchronous operations complete. 
+
+EVent Loop: The event loop is a mechanism that allows JavaScript to handle asynchronous operations.
+It continuously checks the message queue for tasks and executes them one by one, ensuring non-blocking code execution.
+
+**The event loop monitors both the 'call stack' and the 'callback queue'. when the call stack is empty, the event loop removes the callback function from the callback queue and places it 
+to call stack . Once the callback function is on the call stack, it is executed.
+
+**To prevent a blocking function from blocking other activities, you typically put it in a 'callback function' for execution later.
+Asynchronous means the JavaScript engine can execute other tasks while waiting for another task to be completed.
+
+In JavaScript, asynchronous operations are tasks that do not block the execution of other code while they are being executed. 
+They allow the program to continue running other tasks without waiting for the asynchronous task to finish. 
+Asynchronous operations can include tasks like making HTTP requests, reading files, or handling user input.
+
+When you call the setTimeout(), the JavaScript engine creates a new 'function execution context' and places it on the 'call stack'.
+The setTimeout() executes and creates a TIMER in the Web APIs component of the web browser. When the timer expires, the callback function 
+that was passed in the setTimeout() is placed to the callback queue.
+
+Hoisting of var: Hoisting is a JavaScript mechanism where variables and function declarations are moved 
+to the top of their scope before code execution.
+Variables declared with var are hoisted but initialized with undefined, while functions are hoisted entirely.
+
+var: variables can be re-declared and updated. Hoisted and is initialized as undefined. 'var' is not blocked scope.
+let: declarations are hoisted to the top. Unlike var which is initialized as undefined, the let keyword is not initialized.
+ECMAScript 6 (ES6/ES2015) introduced the let and const keywords that support the declaration of 'block scope' local variables. 
+const: constant - a read-only reference to a value. This does not mean the value is 'immutable', just that the 'variable identifier' cannot be reassigned.
+
+null: represents the "intentional" absence of any object value.
+undefined: represents the absence of a value in a variable, often when it has been declared but not assigned.
+
+'THIS': this refers to the 'current execution context' in JavaScript. Its behavior depends on where it's used:
+In the global scope, this refers to the global object (e.g., window in browsers).
+Inside a function, it depends on how the function is called (e.g., object method, constructor, etc.).
+
+Well, when you only have to create a single object literal, it's not so useful. But if you create more than one, 
+this enables you to use the same method definition for every object you create.
+
+What is “this” Context? Context is most often determined by how a function is invoked. When a function is called as a method of an object, 'this' is 
+set to the object the method is called on.
+
+When called as an unbound function, this will default to the global context or window object in the browser. However, if the function is executed in strict mode, the 
+context will default to undefined. An unbound function is a function that is not bound to an object, so 'this' in that function refers to the global (window) object.
+You can either bind a function by making it a method of an object or explicitly binding it using the .bind() method.
+
+callback function: A callback function is a function passed as an argument to another function, to be executed later.
+They are commonly used for handling asynchronous operations, event handling, and more, enabling non-blocking code execution.
+
+'prototypal inheritance' in JavaScript:
+22) Constructor:
+A constructor is just a function called using the new keyword. When you call a constructor, it will:
+-create a new object
+-bind 'this' to the new object, so you can refer to this in your constructor code
+-run the code in the constructor
+-return the new object.
+Constructors, by convention, start with a capital letter and are named for the type of object they create.
+
+23) Object Prototype: it is a way to implement inheritance.
+Prototypes are the mechanism by which JavaScript objects inherit features from one another.
+Every object in JavaScript has a built-in property, which is called its prototype. The prototype is itself an object, so the prototype 
+will have its own prototype, making what's called a prototype chain. The chain ends when we reach a prototype that has null for its own prototype.
+The standard way to access an object's prototype is the Object.getPrototypeOf() method.
+When you try to access a property of an object: if the property can't be found in the object itself, the prototype is searched for the property. 
+If the property still can't be found, then the prototype's prototype is searched, 
+and so on until either the property is found, or the end of the chain is reached, in which case undefined is returned.
+Object.getPrototypeOf(myObject); // Object { }
+This is an object called Object.prototype, and it is the most basic prototype, that all objects have by default. 
+The prototype of Object.prototype is null, so it's at the end of the prototype chain.
+The prototype of an object is not always Object.prototype.
+
+ArrayPrototype: prototype allows you to add new properties and methods to arrays. prototype is a property available with all JavaScript objects.
+Syntax: Array.prototype.name = value. The value can be a function or anything.
+
+Constructors in JavaScript provide us with something like a class definition, enabling us to define the "shape" of an object, 
+including any methods it contains, in a single place. But prototypes can be used here, too. 
+For example, if a method is defined on a constructor's prototype property, then all objects created using that constructor 
+get that method via their prototype, and we don't need to define it in the constructor.
+
+Answer from ChatGPT:
+In JavaScript, objects can be created using constructor functions. A constructor function is a function that is used to create objects with a specific "shape" or 
+structure. The constructor function contains the definition of the properties and methods that the objects will have.
+Prototypes are a way to share methods and properties among objects. Each object in JavaScript has a prototype property, which points to an object that provides 
+it with its properties and methods. When a method or property is called on an object, JavaScript looks for that property or method in the object itself, and 
+if it can't find it, it looks for it in the object's prototype. Using prototypes, we can define methods and properties on a constructor's prototype property 
+instead of defining them in the constructor function itself. This allows all objects created using that constructor to inherit those methods and properties 
+from the prototype object, without having to define them again for each object. This can save memory and make our code more efficient.
+So, in summary, the statement is saying that constructors in JavaScript can be used to define the "shape" of an object, including any methods it contains, in a 
+single place. However, we can also use prototypes to define methods on the prototype property of the constructor, which will be inherited by all objects created 
+using that constructor.
+
+
+Maven: package manager in Java
+Node Package Manager (NPM): same as Maven
+Node.js: is a JavaScript 'runtime environment' that allows you to execute JavaScript code on the server-side (outside of a web browser).
+Node.js provides a wide range of built-in libraries and modules for various tasks, such as file I/O, networking, and HTTP server creation.
+It enables developers to build server-side applications, command-line tools, and more using JavaScript.
+npm (Node Package Manager):
+'npm' is a package manager for Node.js that allows you to easily manage and install third-party libraries and modules (packages) into your Node.js projects.
+It comes pre-installed with Node.js, so when you install Node.js, you also get npm.
+npm simplifies dependency management by helping you install, update, and remove packages, as well as manage their versions.
+Developers can publish their own packages to the npm registry, making it a vast repository of reusable JavaScript code.
+The 'package.json' file is a key component of npm. It stores metadata about your project and its dependencies.
+
+Wrapper classes: in JavaScript are a group of classes that represent primitive data types (such as Number, String, Boolean, etc.) as objects.
+// These classes provide a set of methods and properties that allow you to work with primitive values as if they were objects.
+// For example, the 'Number' wrapper class allows you to create a number object and call methods like toFixed(), toExponential(), toPrecision(), etc. on it,
+// whereas the primitive number value does not have these methods.
+
+// ***Wrapper classes are useful because they allow you to work with primitive values as objects, providing additional functionality and convenience.
+
+super: The "super" keyword is used to call a parent class's "constructor" or "method" from within a subclass. It is also used in prototype-based OOP. 
+Instance variable: An instance variable is a variable that belongs to an instance of a class. In JavaScript, we can define instance variables by using the "this" keyword inside the constructor function.
+Class variable: A class variable is a variable that belongs to the class itself rather than any instance of the class. In JavaScript, we can define class variables by defining them as static fields of the class. 
+Static field and Static method are class variables.
+In prototype-based OOP, there are no static /class fields and methods since there are no classes.
+
+**variables are always stored on instance of a class (inside the constructor). methods are defined on the prototype.
+The prototype gives you an access to various methods/functions to manipulate the data but prototype does not store the data. 
+Also super.superclassVariable is not allowed because I am trying to access data of the parent class, which is not 
+allowed. That would go against encapsulation. You have access to superclass’s methods but you are not going to access 
+the variable/data directly. An instance of a class, whether subclass or superclass, has access to the data/variable 
+of its own but not to any other instance (subclass/superclass).
+
+Map: is a data structure for key-value pairs, while 'Set' is a data structure for storing unique values.
+Unlike plain objects, Map keys can be of any data type, and Set enforces uniqueness of values.
+when you use a plain object, the keys are always converted to strings.
+With a Map, you can use keys of any data type, including objects, functions, or even other maps. The key remains in its original form:

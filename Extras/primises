@@ -1,0 +1,77 @@
+Call Stack
+Callback Queue
+EVENT LOOP
+
+
+1) Callback: a callback is a function that you pass into another function as an argument to execute at a later time.
+A callback is a simple function that's passed as a value to another function, and will "only be executed when the event happens".
+eg: setTimeout(callback_function(), 1000). Here the callback function will be executed when 1000 milliseconds passes.
+
+2) Alternatives to callbacks:
+Starting with ES6, JavaScript introduced several features that help us with asynchronous code that do not involve using callbacks: Promises (ES6) and Async/Await.
+
+
+EVENT LOOP:  Used to acheive concurrency/Asynchronicity. Constantly running process that coordinates the tasks between the call stack and callback queue to achieve concurrency.
+To prevent a blocking function from blocking other activities, you typically put it in a callback function for execution later.
+Asynchronous means the JavaScript engine can execute other tasks while waiting for another task to be completed.
+
+When you call the setTimeout(), the JavaScript engine creates a new 'function execution context' and places it on the 'call stack'.
+The setTimeout() executes and creates a TIMER in the Web APIs component of the web browser. When the timer expires, the callback function 
+that was passed in the setTimeout() is placed to the callback queue.
+The event loop monitors both the 'call stack' and the 'callback queue'. when the call stack is empty, the event loop removes the callback function from the callback queue and places it 
+to call stack . Once the callback function is on the call stack, it is executed.
+
+The JavaScript event loop is a fundamental part of the language's concurrency model.
+It's responsible for managing the execution of code, including handling asynchronous tasks, 
+such as I/O operations (e.g., reading files or making network requests) and timers (e.g., setTimeout and setInterval).
+Promises:
+
+
+1) PROMISE: a promise is an object that 'encapsulates' the result of an asynchronous operation.
+To create a progression in which one function only fires after the completion of another function, use the Promise.
+A promise object has a state that can be one of the following:
+Pending
+Fulfilled with a value
+Rejected for a reason
+In the beginning, the state of a promise is pending, indicating that the asynchronous operation is in progress. 
+Depending on the result of the asynchronous operation, the state changes to either fulfilled or rejected.
+
+"promiseObject.Then - handle if Promise RESOLVED
+"promiseObject.Catch - handle if Promise REJECTED
+
+1) Async/await: You use the await keyword to wait for a Promise to settle either in resolved or rejected state. And you can use the await keyword only inside 
+an async function.
+async function display() {
+    let result = await sayHi();
+    console.log(result);
+}
+In this example, the await keyword instructs the JavaScript engine to wait for the sayHi() function to complete before displaying the message.
+
+
+*****Promises are a way to represent asynchronous operations in a more structured and manageable way.
+A Promise is an object that represents a future value or error, allowing you to attach callbacks to it to be executed when the operation completes 
+(either successfully with a value or with an error).
+Promises help in avoiding callback hell (a situation where you have nested callbacks within callbacks) and make asynchronous code more readable and maintainable.
+Now, here's how the event loop and promises work together:
+
+Scheduling Asynchronous Operations:
+
+When you initiate an asynchronous operation, like a network request or a setTimeout, JavaScript schedules it to be executed in the future, and control 
+returns to the event loop immediately.
+Promise Usage:
+
+When you use Promises, you create a chain of asynchronous operations. Each operation returns a Promise, and you can attach then and catch handlers to these Promises.
+These handlers are registered with the event loop and executed when the associated asynchronous operation is completed.
+Non-Blocking Execution:
+
+Promises allow you to write code that doesn't block the event loop. This means that while an asynchronous operation is in progress (e.g., a network request), 
+your JavaScript code can continue to execute other tasks or respond to user interactions.
+Event Loop Execution:
+
+The event loop continuously checks for completed asynchronous operations and their associated Promise handlers.
+When an asynchronous operation finishes, its callback is placed in the event queue.
+The event loop picks up these callbacks from the queue and executes them in the order they were added, allowing you to respond to the results of the asynchronous 
+operations.
+In summary, the event loop and promises work together to enable asynchronous programming in JavaScript. Promises provide a structured way to manage and handle 
+asynchronous tasks, and the event loop ensures that the code attached to these promises is executed at the appropriate time when the asynchronous operations complete. 
+This combination allows for efficient, non-blocking execution of JavaScript code.

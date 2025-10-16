@@ -19,8 +19,6 @@ Constructors, by convention, start with a capital letter and are named for the t
 /**
  * When a static or instance method is called without a value for 'this', such as by assigning the method to a variable and
  * then calling it, the 'this' value will be 'undefined' inside the method.
- * In JavaScript, the value of 'this' is determined at RUNTIME, based on the way the function is invoked.
- * If a function is called as a STANDALONE function like functionName(), without a context to an object, like obj.functionName(), then the context of 'this' is lost.
  */
  
 /**
